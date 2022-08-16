@@ -47,6 +47,16 @@ body {
   cursor: pointer;
 }
 
+.addBtn{
+  background-color: lightseagreen;
+  color: white;
+}
+
+.disabledBtn{
+  background-color: lightsteelblue;
+  cursor: not-allowed !important;
+}
+
 .todoList {
   flex: 70%;
   width: 100%;
@@ -93,6 +103,10 @@ body {
   border-bottom-right-radius: 8px;
   color: white;
   cursor: pointer;
+}
+
+.deleteIcon{
+  font-size: 25px;
 }
 
 @media (max-width: 512px){

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState, useEffect } from 'react';
 import './App.css';
 import TodoTask from './components/TodoTask';
 import { ITask } from './Interfaces';
@@ -8,6 +8,7 @@ const App: FC = () => {
   const [task, setTask] = useState<string>("");
   const [deadline, setDeadline] = useState<number>(0);
   const [todoList, setTodoList] = useState<ITask[]>([]);
+  const [isValid, setIsValid] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target.name === "task") {
@@ -32,6 +33,14 @@ const App: FC = () => {
     setTodoList(todoList.filter((task) => task.taskName !== taskNameToDelete));
   };
 
+  useEffect(() => {
+    if (task && deadline) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }, [task, deadline]);
+  
   return (
     <div className="App">
       <div className="header">
@@ -52,7 +61,7 @@ const App: FC = () => {
             onChange={handleChange} 
           />
         </div>
-        <button onClick={addTask}>Agregar Tarea</button>
+        <button className={`addBtn ${isValid ? "" : "disabledBtn" }`} onClick={addTask} disabled={isValid ? false : true}>Agregar Tarea</button>
       </div>
 
       <div className="todoList">

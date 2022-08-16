@@ -1,5 +1,7 @@
 import React from 'react';
 import { ITask } from '../Interfaces';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
     task: ITask;
@@ -13,7 +15,7 @@ const TodoTask = ({ task, completeTask }: Props) => {
                 <span>{task.taskName}</span>
                 <span>{task.deadline} días</span>
             </div>
-            <button onClick={() => completeTask(task.taskName)}>X</button>
+            <button onClick={() => completeTask(task.taskName)}><FontAwesomeIcon icon={faXmark} className="deleteIcon" /></button>
         </div>
     );
 };
